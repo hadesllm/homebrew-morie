@@ -13,9 +13,19 @@ class Morie < Formula
   # the venv. This is the documented pattern for Python applications that
   # depend on the SciPy stack — fully pinning resources here would mean
   # tracking ~30+ wheels through every numpy/pandas point release.
+  #
+  # We invoke pip directly rather than `pip_install_and_link buildpath`
+  # because the latter installs morie without resolving its declared
+  # dependencies (the Homebrew helper expects explicit `resource` blocks
+  # for every transitive dep, which the SciPy stack makes impractical).
+  # `pip install morie==<version>` pulls the sdist from PyPI and lets
+  # pip resolve numpy / pandas / scipy / scikit-learn / statsmodels /
+  # DoubleML / matplotlib / httpx / etc. into the brew-managed venv.
   def install
     venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install_and_link buildpath
+    system libexec/"bin/pip", "install", "--upgrade", "morie==#{version}"
+    bin.install_symlink libexec/"bin/morie"
+    bin.install_symlink libexec/"bin/moirais"
   end
 
   test do
