@@ -29,10 +29,21 @@ brew upgrade morie
 
 | Channel | Command |
 | --- | --- |
+| One-liner (no pip/python needed) | `curl -fsSL https://hadesllm.github.io/morie/install.sh \| bash` |
 | PyPI | `pip install morie` |
 | r-universe (R) | `install.packages('morie', repos='https://hadesllm.r-universe.dev')` |
 | Docker (GHCR) | `docker run --rm ghcr.io/hadesllm/morie:latest morie --help` |
-| One-liner | `curl -fsSL https://raw.githubusercontent.com/hadesllm/morie/main/install.sh \| bash` |
+
+## See also
+
+- **Main repo**: [`hadesllm/morie`](https://github.com/hadesllm/morie) — Python + R source, JSS papers, install.sh
+- **Docs site**: [hadesllm.github.io/morie](https://hadesllm.github.io/morie/) — Sphinx-rendered reference, quick start, methods
+- **PyPI**: [pypi.org/project/morie](https://pypi.org/project/morie/) — the upstream source distribution this formula pulls from
+- **r-universe**: [hadesllm.r-universe.dev/morie](https://hadesllm.r-universe.dev/morie) — R-package nightly binary builds
+
+## Pre-alpha (v0.x)
+
+morie is in pre-alpha. The first alpha milestone is v1.0.0; everything below is point releases of pre-alpha code. APIs and findings may shift between minor versions. See the [main repo's papers/](https://github.com/hadesllm/morie/tree/main/papers) for the empirical work behind each release.
 
 ## License
 
