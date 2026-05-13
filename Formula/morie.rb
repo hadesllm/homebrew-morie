@@ -14,16 +14,17 @@ class Morie < Formula
   # depend on the SciPy stack — fully pinning resources here would mean
   # tracking ~30+ wheels through every numpy/pandas point release.
   #
-  # We invoke pip directly rather than `pip_install_and_link buildpath`
-  # because the latter installs morie without resolving its declared
-  # dependencies (the Homebrew helper expects explicit `resource` blocks
-  # for every transitive dep, which the SciPy stack makes impractical).
-  # `pip install morie==<version>` pulls the sdist from PyPI and lets
-  # pip resolve numpy / pandas / scipy / scikit-learn / statsmodels /
-  # DoubleML / matplotlib / httpx / etc. into the brew-managed venv.
+  # We invoke `python -m pip` (not `pip` directly) because Homebrew's
+  # virtualenv_create writes a pip launcher whose shebang can point at a
+  # path that doesn't yet exist when pip runs from the formula sandbox,
+  # silently failing the install.  `python -m pip` uses the venv's
+  # python directly and resolves morie's declared dependencies
+  # (numpy / pandas / scipy / scikit-learn / statsmodels / DoubleML /
+  # matplotlib / httpx / ...) from PyPI.
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    system libexec/"bin/pip", "install", "--upgrade", "morie==#{version}"
+    virtualenv_create(libexec, "python3.12")
+    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
+    system libexec/"bin/python", "-m", "pip", "install", "morie==#{version}"
     bin.install_symlink libexec/"bin/morie"
     bin.install_symlink libexec/"bin/moirais"
   end
