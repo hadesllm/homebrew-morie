@@ -3,9 +3,9 @@ class Morie < Formula
 
   desc "Multi-domain scientific computing toolkit with the MRM framework"
   homepage "https://hadesllm.github.io/morie/"
-  url "https://files.pythonhosted.org/packages/71/69/f038981c83c46124836f88dc998ae78b1c3f69eb91f209111e9da86dc357/morie-0.6.1.tar.gz"
-  sha256 "a9172b81ec2b5d681263d1575e1a6aaec6c85181bae06e8435bab82a4ad3ad8b"
-  license any_of: ["MIT", "Apache-2.0"]
+  url "https://files.pythonhosted.org/packages/24/87/4801b6bd0a8b6d2ef7f05e32ef1b13790556ba3107bec2d55f30a9ceadbb/morie-0.7.3.tar.gz"
+  sha256 "00d7e5d43a4f8aaa288dd4efd836562ea38b1c0d792d608cf4c0783f227367ff"
+  license "AGPL-3.0-or-later"
 
   depends_on "python@3.12"
 
@@ -26,7 +26,6 @@ class Morie < Formula
     system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
     system libexec/"bin/python", "-m", "pip", "install", "morie==#{version}"
     bin.install_symlink libexec/"bin/morie"
-    bin.install_symlink libexec/"bin/moirais"
   end
 
   test do

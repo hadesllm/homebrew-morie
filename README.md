@@ -47,5 +47,8 @@ morie is in pre-alpha. The first alpha milestone is v1.0.0; everything below is 
 
 ## License
 
-Tap definition: MIT.
-morie itself: MIT OR Apache-2.0 (Python), GPL-2 (R package).
+Tap definition: AGPL-3.0-or-later.
+morie itself: AGPL-3.0-or-later (Python and R). The optional Linux-kernel
+adjuncts in the main repo's `kernel-module/` and `daemon/` stay GPL-2.0-only
+(kernel ABI requirement) and are not part of the Homebrew install. Papers,
+data, and documentation are CC BY-NC-SA 4.0.
